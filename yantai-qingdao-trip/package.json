@@ -1,0 +1,26 @@
+{
+  "name": "yantai-qingdao-trip",
+  "version": "2.1.0",
+  "private": true,
+  "type": "module",
+  "description": "옌타이·칭다오 3박 일정 지도: 실제 지도 타일, 도로 경로 API, 구간별 이동수단 비교",
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "dev": "node server.mjs --dev",
+    "build": "node build.mjs",
+    "start": "node build.mjs && node server.mjs",
+    "routes": "node scripts/prefetch-routes.mjs && node build.mjs",
+    "photos": "node scripts/fetch-photos.mjs && node build.mjs",
+    "vercel-build": "node scripts/prefetch-routes.mjs; node scripts/fetch-photos.mjs; node build.mjs",
+    "test": "node --test"
+  },
+  "devDependencies": {
+    "@expo-google-fonts/do-hyeon": "^0.4.1",
+    "@fontsource/barlow-semi-condensed": "^5.1.1",
+    "esbuild": "^0.24.2",
+    "leaflet": "^1.9.4",
+    "subset-font": "^2.4.0"
+  }
+}

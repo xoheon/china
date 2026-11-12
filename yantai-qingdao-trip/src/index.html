@@ -1,0 +1,89 @@
+<div class="app" id="app">
+  <header class="head">
+    <p class="eyebrow">2026.11.14 – 11.17 · 산둥</p>
+    <h1>옌타이와 칭다오, 3박</h1>
+    <p class="lede">구간마다 택시, 지하철, 버스, 도보를 비교했어요. 이동수단을 누르면 지도 위 경로와 시간, 교통비가 바뀝니다.</p>
+    <div class="ctrls">
+      <div class="ctrl">
+        <span>인원</span>
+        <div class="stepper" role="group" aria-label="인원">
+          <button type="button" id="pminus" aria-label="한 명 줄이기">−</button>
+          <output id="pnum" aria-live="polite">11명</output>
+          <button type="button" id="pplus" aria-label="한 명 늘리기">+</button>
+        </div>
+      </div>
+      <div class="ctrl">
+        <span>이동수단 한꺼번에 고르기</span>
+        <div class="pick" role="group" aria-label="이동수단 한꺼번에 고르기" id="presets"></div>
+      </div>
+    </div>
+  </header>
+
+  <section class="stage" aria-label="지도">
+    <div class="mapwrap">
+      <div id="map"></div>
+      <div class="pick base" role="group" aria-label="지도 종류" id="base"></div>
+      <button type="button" class="fitbtn" id="fit" title="이날 동선 전체 보기" aria-label="이날 동선 전체 보기"></button>
+      <div class="mapcard" id="mapcard"></div>
+      <p class="toast" id="toast" role="status" hidden></p>
+    </div>
+    <div class="player" role="group" aria-label="동선 재생">
+      <button type="button" class="pbtn" id="pprev" aria-label="이전 장소"></button>
+      <button type="button" class="pbtn play" id="pplay" aria-label="동선 재생"></button>
+      <button type="button" class="pbtn" id="pnext" aria-label="다음 장소"></button>
+      <div class="pnow">
+        <span class="plabel" id="plabel">동선 재생</span>
+        <span class="pbar" aria-hidden="true"><i id="pfill"></i></span>
+      </div>
+      <button type="button" class="pspeed" id="pspeed" aria-label="재생 속도">1×</button>
+    </div>
+  </section>
+
+  <main class="rail">
+    <nav class="days" id="days" role="tablist" aria-label="날짜"></nav>
+    <div class="dayhead">
+      <div class="hero" id="hero">
+        <div class="hero-txt">
+          <p class="hero-eye" id="deye"></p>
+          <h2 id="dtitle"></h2>
+        </div>
+        <a class="hero-credit" id="herocredit" target="_blank" rel="noopener" hidden></a>
+      </div>
+      <p id="dsub"></p>
+      <dl class="sum" id="sum"></dl>
+      <p class="rstat" id="rstat"></p>
+    </div>
+    <ol class="line" id="line"></ol>
+
+    <div class="legend" aria-label="지도 기호">
+      <span><b class="dot">1</b>관광과 쇼핑</span>
+      <span><b class="dot k-food">2</b>식당</span>
+      <span><b class="dot k-hub">3</b>공항, 호텔, 역</span>
+    </div>
+
+    <section class="block">
+      <h2>교통 메모</h2>
+      <ul class="tips" id="tips"></ul>
+    </section>
+
+    <section class="block">
+      <h2>출발 전에 예약하고 확인할 것</h2>
+      <ul class="todo" id="todo"></ul>
+    </section>
+
+    <section class="block" id="creditsec" hidden>
+      <h2>사진 출처</h2>
+      <ul class="credits" id="credits"></ul>
+    </section>
+
+    <p class="fine">이동 시간과 거리는 OSRM 경로 API가 실제 도로를 따라 계산한 값에 신호와 정체 여유(자동차 1.25배에 2분, 도보 1.1배)를 더한 것입니다. 연결이 안 될 때는 11월 11일에 받아 둔 값을 씁니다. 택시 요금은 옌타이 기본 9위안(3km)에 km당 1.8위안, 칭다오 기본 10위안에 km당 2위안, 6km부터 할증을 넣어 계산한 근삿값이라 실제와 10~20% 다를 수 있어요. 버스와 지하철의 시간과 요금은 직접 적어 둔 값이니 타기 전에 고덕지도에서 확인하세요. 식당 평점과 후기는 구글 지도 기준이고, 날씨는 11월 11일에 확인한 예보입니다. 13일 저녁에 시간대별 예보를 다시 보세요.</p>
+  </main>
+</div>
+
+<div class="show" id="show" hidden role="dialog" aria-modal="true" aria-labelledby="showzh">
+  <button type="button" class="show-x" id="showx" aria-label="닫기">닫기</button>
+  <p class="show-ask" lang="zh">师傅，请送我们到这里</p>
+  <p class="show-zh" id="showzh" lang="zh"></p>
+  <p class="show-cars" id="showcars" lang="zh"></p>
+  <p class="show-ko" id="showko"></p>
+</div>
